@@ -31,14 +31,10 @@ const classProps = {
       return qb.whereIn('name', value)
     },
     alive: function (qb, value) {
-      if (value) {
-        return qb.whereNull('date_of_death');
-      } else {
-        return qb.whereNotNull('date_of_death');
-      }
+      return qb.whereNull('date_of_death');
     },
     dead: function (qb, value) {
-      return this.alive(qb, !value);
+      return qb.whereNotNull('date_of_death');
     },
     date_of_birth: function (qb, value) {
       return qb.whereIn('date_of_birth', value);
